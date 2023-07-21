@@ -9,15 +9,25 @@
 #include <dt-bindings/zmk/bt.h>
 
 / {
+
+ behaviors {
+    #include "macros.dtsi"
+
+    hm: homerow_mods {
+        compatible = "zmk,behavior-hold-tap";
+        label = "HOMEROW_MODS";
+        #binding-cells = <2>;
+        tapping-term-ms = <200>;
+        quick_tap_ms = <175>;
+        flavor = "tap-preferred";
+        bindings = <&kp>, <&kp>;
+    };
+  };
         keymap {
                 compatible = "zmk,keymap";
 
                 default_layer {
-// -----------------------------------------------------------------------------------------
-// |  ESC |  Q  |  W  |  E  |  R  |  T  |   |  Y  |  U   |  I  |  O  |  P  |  BT  |
-// | TAB  |  A  |  S  |  D  |  F  |  G  |   |  H  |  J   |  K  |  L  |  ;  |  NAV |
-// | SHFT |  Z  |  X  |  C  |  V  |  B  |   |  N  |  M   |  ,  |  .  |  /  | SHFT |
-//                    | NUM | BSPC | MOD|   | ENT | SPC  | FUNC |
+
                         label = "Base";
                         bindings = <
    &kp ESC   &kp Q &kp W &kp E &kp R &kp T   &kp Y &kp U  &kp I     &kp O   &kp P    &mo 1
@@ -27,11 +37,6 @@
                         >;
                 };
                 bluetooth_layer {
-// -----------------------------------------------------------------------------------------
-// | BT1 | BT2 | BT3 | BT4 | BT5 | |  |     |     |    |     |     |   |
-// | CLR  |     |     |     |     |     |   |     |     |    |   |     |      |
-// | CLR |     |     | CLR |     |     |   |     |     |     |     |     |      |
-//                    |     |     |     |   |     |     |  |
                         label = "Bluethooth";
                         bindings = <
    &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4 &trans        &trans &trans &trans &trans &trans &trans
@@ -42,11 +47,6 @@
                 };
 
                 symbol_layer {
-// -----------------------------------------------------------------------------------------
-// |  TAB |  !  |  @  |  #  |  $  |  %  |   |  ^  |  &  |  *  |  (  |  )  | BKSP |
-// | CTRL |     |     |     |     |     |   |  -  |  =  |  [  |  ]  |  \  |  `   |
-// | SHFT |     |     |     |     |     |   |  _  |  +  |  {  |  }  | "|" |  ~   |
-//                    | NUM | BSPC | MOD|   | ENT | SPC  | FUNC |
                         label = "Symbols";
                         bindings = <
    &kp ESC    &kp EXCL        &kp AT            &kp HASH         &kp DLLR              &kp PRCNT             &kp CARET          &kp AMPS              &kp STAR           &kp PIPE          &kp MINUS      &trans
